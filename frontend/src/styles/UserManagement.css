@@ -1,0 +1,120 @@
+/* Contenedor principal */
+.user-management-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Encabezados */
+.user-management-header {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Botones */
+.user-management-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-management-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+/* Botón de logout ubicado a la derecha */
+.logout-button {
+    float: right;
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+/* Formularios de usuario */
+.user-form {
+    margin-top: 20px;
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-form button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    background-color: #28a745;
+    cursor: pointer;
+}
+
+.user-form button:hover {
+    background-color: #218838;
+}
+
+/* Estilos para secciones de usuarios */
+.user-section {
+    margin-bottom: 30px;
+}
+
+.user-details {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;              /* Sin bordes para un look más limpio */
+    border-radius: 5px;        /* Bordes redondeados */
+    padding: 10px 20px;        /* Padding adecuado para hacer el botón más clickeable */
+    cursor: pointer;           /* Cursor de mano para indicar que es un botón */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para los cambios de color */
+    margin-right: 10px;   
+}
+
+.edit-button:hover {
+    background-color: #0069d9;
+}
+
+.admin-button {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.admin-button:hover {
+    background-color: #e0a800;
+}
+
+.user-management-delete-button {
+    background-color: #dc3545; /* Color rojo para indicar acción de peligro */
+    color: white;              /* Texto blanco para contraste */
+    border: none;              /* Sin bordes para un look más limpio */
+    border-radius: 5px;        /* Bordes redondeados */
+    padding: 10px 20px;        /* Padding adecuado para hacer el botón más clickeable */
+    cursor: pointer;           /* Cursor de mano para indicar que es un botón */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para los cambios de color */
+    margin-right: 10px;        /* Margen derecho para separar de otros botones */
+}
+  
+.user-management-delete-button:hover {
+    background-color: #c82333; /* Color rojo más oscuro al pasar el ratón por encima */
+    color: #fff;               /* Se mantiene el texto blanco para buen contraste */
+}
