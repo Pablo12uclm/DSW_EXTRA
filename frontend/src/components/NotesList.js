@@ -4,11 +4,10 @@ import Note from './Note';
 import NoteForm from './NoteForm';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCog } from '@fortawesome/free-solid-svg-icons';
+import { faUserCog, faFolder } from '@fortawesome/free-solid-svg-icons';  // Importa el icono de la carpeta
 
 import '../styles/App.css';
 import '../styles/Note.css';
-
 
 function NotesList() {
   const [notes, setNotes] = useState([]);
@@ -21,8 +20,8 @@ function NotesList() {
       .catch(error => console.error('Error fetching notes:', error));
   };
 
-   // Función para obtener las notas de todos los usuarios no admin
-   const fetchAllUsersNotes = () => {
+  // Función para obtener las notas de todos los usuarios no admin
+  const fetchAllUsersNotes = () => {
     axios.get('/notes')
       .then(response => setAllUsersNotes(response.data))
       .catch(error => console.error('Error fetching all user notes:', error));
@@ -48,26 +47,25 @@ function NotesList() {
         console.error('Error adding note:', error);
       });
   };
-  
 
   const updateNote = (id, updatedNote) => {
     axios.put(`/notes/${id}`, updatedNote)
-    .then(response => {
+      .then(response => {
         console.log("Respuesta después de actualizar:", response.data);
         // Aquí actualizamos el estado con la nota actualizada
         setNotes(prevNotes => prevNotes.map(note => note._id === id ? { ...note, ...response.data } : note));
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.error('Error al actualizar la nota:', error);
-    });
+      });
   };
 
   const deleteNote = (id) => {
     axios.delete(`/notes/${id}`)
-    .then(() => {
-      fetchNotes(); // Recargar las notas después de eliminar
-    })
-    .catch(error => console.error('Error deleting note:', error));
+      .then(() => {
+        fetchNotes(); // Recargar las notas después de eliminar
+      })
+      .catch(error => console.error('Error deleting note:', error));
   };
 
   useEffect(() => {
@@ -85,9 +83,12 @@ function NotesList() {
 
   return (
     <div>
-      <div className="note-management-link">
+      <div className="note-management-links">
         <Link to="/manage-users" className="note-management-button">
           <FontAwesomeIcon icon={faUserCog} /> User Management
+        </Link>
+        <Link to="/collection" className="note-management-button">
+          <FontAwesomeIcon icon={faFolder} /> Collection
         </Link>
       </div>
       <h1>Create Note</h1>
@@ -121,7 +122,5 @@ function NotesList() {
     </div>
   );
 };
-
-
 
 export default NotesList;

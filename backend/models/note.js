@@ -7,7 +7,8 @@ const noteSchema = new Schema({
   content: { type: String, required: true },
   items: [String],
   images: [String],
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Agregando la referencia al usuario
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, // Agregando la referencia al usuario
+  collection: { type: String, required: true } 
 }, { timestamps: true });
 
 const Note = mongoose.model('Note', noteSchema);

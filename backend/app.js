@@ -15,7 +15,7 @@ var collectionRouter = require('./routes/collections');
 var app = express();
 
 // Configuración de MongoDB
-const mongoURI = 'mongodb://pablo:1234@localhost:27017/notesAppDB';
+const mongoURI = 'mongodb+srv://DSW:12345@cluster0.lbjtfnd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.error('MongoDB connection error:', err));
