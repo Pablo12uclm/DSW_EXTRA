@@ -4,7 +4,7 @@ import Note from './Note';
 import NoteForm from './NoteForm';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCog, faFolder } from '@fortawesome/free-solid-svg-icons';  // Importa el icono de la carpeta
+import { faUserCog, faFolder, faUserFriends } from '@fortawesome/free-solid-svg-icons';  // Importa el icono de la carpeta
 
 import '../styles/App.css';
 import '../styles/Note.css';
@@ -89,6 +89,9 @@ function NotesList() {
         </Link>
         <Link to="/collection" className="note-management-button">
           <FontAwesomeIcon icon={faFolder} /> Collection
+        </Link>
+        <Link to="/friends" className="note-management-button">
+          <FontAwesomeIcon icon={faUserFriends} /> Friends
         </Link>
       </div>
       <h1>Create Note</h1>

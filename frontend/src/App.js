@@ -4,7 +4,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import NotesList from './components/NotesList';
 import UserManagement from './components/UserManagement';
-import Collection from './components/Collection'; // Asume que Collections está en la carpeta components
+import Collection from './components/Collection';
+import Friends from './components/Friends';
 import './styles/App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/notes" element={isLoggedIn ? <NotesList /> : <Navigate replace to="/login" />} />
                     <Route path="/manage-users" element={isLoggedIn ? <UserManagement /> : <Navigate replace to="/login" />} />
                     <Route path="/collection" element={isLoggedIn ? <Collection /> : <Navigate replace to="/login" />} />
+                    <Route path="/friends" element={<Friends />} />
 
                     <Route path="/" element={<Navigate replace to={isLoggedIn ? "/notes" : "/login"} />} />
                 </Routes>

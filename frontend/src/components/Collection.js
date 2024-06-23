@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../axiosConfig';
 import { useNavigate, Link } from 'react-router-dom'; // Importa Link desde react-router-dom
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCog } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Collection.css';
 
 const Collection = () => {
@@ -47,12 +47,13 @@ const Collection = () => {
     };
 
     return (
+        <div>
+        <div className="note-management-links">
+                <button onClick={() => navigate('/notes')} className="user-management-button">
+                    <FontAwesomeIcon icon={faArrowLeft} /> Back to Notes
+                </button>
+        </div>
         <div className="collection-container">
-            <div className="collection-management-link">
-                <Link to="/manage-users" className="collection-management-button">
-                    <FontAwesomeIcon icon={faUserCog} /> User Management
-                </Link>
-            </div>
             <h1>Create Collection</h1>
             <div className="collection-form">
                 <input
@@ -71,9 +72,7 @@ const Collection = () => {
                     </li>
                 ))}
             </ul>
-            <button>
-                <Link to="/notes">Go to Notes</Link> 
-            </button>
+        </div>
         </div>
     );
 };
