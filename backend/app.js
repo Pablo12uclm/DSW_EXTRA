@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var notesRoutes = require('./routes/notes'); // Rutas para las notas
 var loginRouter = require('./routes/login');  // Asegúrate de que esto apunte al archivo correcto
 var collectionRouter = require('./routes/collections');
+var friendsRouter = require('./routes/friends'); // Añade esta línea
 var app = express();
 
 // Configuración de MongoDB
@@ -39,7 +40,8 @@ app.use('/', indexRouter);
 // Ruta para las notas
 app.use('/api/notes', notesRoutes);
 app.use('/api/users', usersRouter);
-app.use('/api/login', loginRouter);  // Verifica que la ruta esté definida de esta manera
+app.use('/api/login', loginRouter);
 app.use('/api/collections', collectionRouter);
+app.use('/api/friends', friendsRouter);
 
 module.exports = app;
