@@ -1,0 +1,24 @@
+.friends-container {
+    padding: 20px;
+}
+
+.friend-requests-list, .friends-list {
+    list-style: none;
+    padding: 0;
+}
+
+.friend-request-item, .friend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.friend-request-item span, .friend-item span {
+    flex-grow: 1;
+}
+
+.friend-request-item button {
+    margin-left: 10px;
+}

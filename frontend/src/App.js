@@ -6,6 +6,8 @@ import NotesList from './components/NotesList';
 import UserManagement from './components/UserManagement';
 import Collection from './components/Collection';
 import Friends from './components/Friends';
+import SharedNotes from './components/SharedNotes';
+
 import './styles/App.css';
 
 function App() {
@@ -20,8 +22,8 @@ function App() {
                     <Route path="/notes" element={isLoggedIn ? <NotesList /> : <Navigate replace to="/login" />} />
                     <Route path="/manage-users" element={isLoggedIn ? <UserManagement /> : <Navigate replace to="/login" />} />
                     <Route path="/collection" element={isLoggedIn ? <Collection /> : <Navigate replace to="/login" />} />
-                    <Route path="/friends" element={<Friends />} />
-
+                    <Route path="/friends" element={isLoggedIn ? <Friends /> : <Navigate replace to="/login" />} />
+                    <Route path="/shared-notes" element={isLoggedIn ? <SharedNotes /> : <Navigate replace to="/login" />} />
                     <Route path="/" element={<Navigate replace to={isLoggedIn ? "/notes" : "/login"} />} />
                 </Routes>
             </div>

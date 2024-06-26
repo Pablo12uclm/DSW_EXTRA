@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../axiosConfig';
 import '../styles/Note.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
 
-function Note({ note, deleteNote, updateNote }) {
+function Note({ note, deleteNote, updateNote, canShare }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedNote, setEditedNote] = useState({ ...note });
     const [collections, setCollections] = useState([]);
+    const [showShare, setShowShare] = useState(false);
+    const [friends, setFriends] = useState([]);
+    const [selectedFriend, setSelectedFriend] = useState('');
+    const [shareError, setShareError] = useState('');
 
     useEffect(() => {
         setEditedNote({ ...note });
         fetchCollections();
+        fetchFriends();
     }, [note]);
 
     const fetchCollections = async () => {
@@ -18,6 +25,15 @@ function Note({ note, deleteNote, updateNote }) {
             setCollections(response.data);
         } catch (error) {
             console.error('Error fetching collections:', error);
+        }
+    };
+
+    const fetchFriends = async () => {
+        try {
+            const response = await axios.get('/friends');
+            setFriends(response.data);
+        } catch (error) {
+            console.error('Error fetching friends:', error);
         }
     };
 
@@ -87,6 +103,21 @@ function Note({ note, deleteNote, updateNote }) {
             ...prevState,
             collection: ''
         }));
+    };
+
+    const handleShareNote = async () => {
+        try {
+            setShareError('');
+            await axios.post('/notes/share', { noteId: note._id, friendId: selectedFriend });
+            setShowShare(false);
+            setSelectedFriend('');
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setShareError(error.response.data.error);
+            } else {
+                console.error('Error sharing note:', error);
+            }
+        }
     };
 
     return (
@@ -166,6 +197,27 @@ function Note({ note, deleteNote, updateNote }) {
                     {note.images.map((url, index) => (
                         <img key={index} src={url} alt="Note" className="note-image" />
                     ))}
+                    {canShare && (
+                        <button onClick={() => setShowShare(!showShare)} className="note-button">
+                            <FontAwesomeIcon icon={faShareAlt} /> Share
+                        </button>
+                    )}
+                    {showShare && (
+                        <div className="share-note-container">
+                            <select
+                                value={selectedFriend}
+                                onChange={(e) => setSelectedFriend(e.target.value)}
+                                className="user-select"
+                            >
+                                <option value="">Select a friend</option>
+                                {friends.map(friend => (
+                                    <option key={friend._id} value={friend._id}>{friend.username}</option>
+                                ))}
+                            </select>
+                            <button onClick={handleShareNote} className="share-button">Share</button>
+                            {shareError && <p className="error">{shareError}</p>}
+                        </div>
+                    )}
                     <button onClick={handleEditClick} className="note-button">
                         Edit
                     </button>

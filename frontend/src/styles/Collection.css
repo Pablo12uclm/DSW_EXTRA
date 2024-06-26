@@ -1,0 +1,85 @@
+.collection-management-link {
+    margin-bottom: 20px;
+  }
+  
+  .collection-management-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .collection-management-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .collection-form {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .collection-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex: 1;
+  }
+  
+  .collection-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .collection-button:hover {
+    background-color: #218838;
+  }
+  
+  .collections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .collection-item {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .collection-delete-button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .collection-delete-button:hover {
+    background-color: #c82333;
+  }
+
+  /* Otros estilos existentes */
+
+/* Nueva clase para centrar el nombre del usuario */
+.user-name {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}

@@ -192,6 +192,7 @@ const Collection = () => {
                                                 note={note}
                                                 deleteNote={() => deleteNote(note._id)}
                                                 updateNote={updateNote}
+                                                canShare={true} // Permite compartir en "My Collections"
                                             />
                                         ))
                                     ) : (
@@ -226,6 +227,7 @@ const Collection = () => {
                                                                 note={note}
                                                                 deleteNote={() => deleteNote(note._id)}
                                                                 updateNote={updateNote}
+                                                                canShare={false} // No permite compartir en "Users Collections"
                                                             />
                                                         ))
                                                     ) : (

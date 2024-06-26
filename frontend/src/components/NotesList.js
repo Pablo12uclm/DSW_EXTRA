@@ -4,7 +4,7 @@ import Note from './Note';
 import NoteForm from './NoteForm';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCog, faFolder, faUserFriends } from '@fortawesome/free-solid-svg-icons';  // Importa el icono de la carpeta
+import { faUserCog, faFolder, faUserFriends, faShareAlt } from '@fortawesome/free-solid-svg-icons';  // Importa el icono de compartir
 
 import '../styles/App.css';
 import '../styles/Note.css';
@@ -93,6 +93,9 @@ function NotesList() {
         <Link to="/friends" className="note-management-button">
           <FontAwesomeIcon icon={faUserFriends} /> Friends
         </Link>
+        <Link to="/shared-notes" className="note-management-button">
+          <FontAwesomeIcon icon={faShareAlt} /> Shared Notes
+        </Link>
       </div>
       <h1>Create Note</h1>
       <NoteForm addNote={addNote} onNoteAdded={handleNoteAdded} />
@@ -105,6 +108,7 @@ function NotesList() {
               note={note}
               deleteNote={() => deleteNote(note._id)}
               updateNote={updateNote}
+              canShare={true} // Permite compartir en "My Notes"
             />
           ))}
         </div>
@@ -117,6 +121,7 @@ function NotesList() {
                 note={note}
                 deleteNote={() => deleteNote(note._id)}
                 updateNote={updateNote}
+                canShare={false} // No permite compartir en "Users Notes"
               />
             ))}
           </div>

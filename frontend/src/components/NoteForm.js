@@ -55,7 +55,7 @@ function NoteForm({ onNoteAdded }) {
                 content,
                 items: items.filter(item => item.trim() !== ''),
                 images: images.filter(image => image.trim() !== ''),
-                collection: selectedCollection
+                collection: selectedCollection || null // Asegurarse de enviar null si no hay colección
             });
             onNoteAdded(response.data);
             setTitle('');
