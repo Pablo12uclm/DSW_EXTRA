@@ -8,7 +8,6 @@ function Login() {
         username: '',
         password: ''
     });
-    const navigate = useNavigate();
 
     const handleChange = (event) => {
         setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -23,7 +22,7 @@ function Login() {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('role', response.data.user.role);
 
-            navigate('/notes');
+            window.location.href = '/notes';
         } catch (error) {
             console.error('Login error:', error.response ? error.response.data : 'No response');
             alert('Login failed');
@@ -53,7 +52,7 @@ function Login() {
                     required
                 />
                 <button type="submit">Login</button>
-                <p>You do not have an account? <Link to="/register">Register here</Link></p>
+                <p>Don't have an account? <Link to="/register">Register here</Link></p>
             </form>
         </div>
     );
