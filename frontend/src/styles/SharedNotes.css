@@ -1,0 +1,21 @@
+.shared-notes-container {
+    padding: 20px;
+}
+
+.note-management-links {
+    margin-bottom: 20px;
+}
+
+.user-management-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.user-management-button:hover {
+    background-color: #0056b3;
+}

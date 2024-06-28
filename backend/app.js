@@ -42,6 +42,6 @@ app.use('/api/notes', notesRoutes);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/collections', collectionRouter);
-app.use('/api/friends', friendsRouter); // Añade esta línea
+app.use('/api/friends', friendsRouter);
 
 module.exports = app;

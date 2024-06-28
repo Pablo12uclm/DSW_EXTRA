@@ -15,4 +15,10 @@ router.delete('/:collectionId', isAuthenticated, collectionController.deleteColl
 // Ruta para obtener todas las colecciones de un usuario
 router.get('/', isAuthenticated, collectionController.getUserCollections);
 
+// Ruta para obtener las notas de una colección específica
+router.get('/:id/notes', isAuthenticated, collectionController.getNotesByCollection);
+
+// Ruta para obtener las colecciones de otros usuarios
+router.get('/user-collections', isAuthenticated, collectionController.getAllUserCollections);
+
 module.exports = router;

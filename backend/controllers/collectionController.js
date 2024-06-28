@@ -1,5 +1,6 @@
 const Collection = require('../models/collection'); // Asegúrate de que la ruta al modelo es correcta
 const User = require('../models/User'); // Asegúrate de que la ruta al modelo de usuario es correcta
+const Note = require('../models/note'); // Asegúrate de que la ruta al modelo de nota es correcta
 
 exports.getAllCollections = async (req, res) => {
   try {
@@ -74,6 +75,33 @@ exports.deleteCollection = async (req, res) => {
     res.json({ message: 'Collection deleted' });
   } catch (err) {
     console.error('Error deleting collection:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Nuevo método para obtener las notas de una colección específica
+exports.getNotesByCollection = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const notes = await Note.find({ collection: id });
+    res.status(200).json(notes);
+  } catch (err) {
+    console.error('Failed to fetch notes for collection:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Nuevo método para obtener las colecciones de otros usuarios
+exports.getAllUserCollections = async (req, res) => {
+  try {
+    // Obtener las colecciones de todos los usuarios que no son administradores
+    const nonAdminUsers = await User.find({ role: { $ne: 'Admin' } }).select('_id username');
+    const userIds = nonAdminUsers.map(user => user._id);
+
+    const collections = await Collection.find({ user: { $in: userIds } }).populate('user', 'username');
+    res.status(200).json(collections);
+  } catch (err) {
+    console.error('Failed to fetch collections:', err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };

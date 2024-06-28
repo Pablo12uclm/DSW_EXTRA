@@ -11,7 +11,6 @@ function NoteForm({ onNoteAdded }) {
     const [selectedCollection, setSelectedCollection] = useState('');
 
     useEffect(() => {
-        // Obtener las colecciones al cargar el componente
         fetchCollections();
     }, []);
 
@@ -56,16 +55,14 @@ function NoteForm({ onNoteAdded }) {
                 content,
                 items: items.filter(item => item.trim() !== ''),
                 images: images.filter(image => image.trim() !== ''),
-                collection: selectedCollection
+                collection: selectedCollection || null // Asegurarse de enviar null si no hay colección
             });
-            console.log('Note created:', response.data);
-            onNoteAdded(response.data); // Llama a la callback con la nueva nota
-            // Reset form after submission
+            onNoteAdded(response.data);
             setTitle('');
             setContent('');
             setItems(['']);
             setImages(['']);
-            setSelectedCollection(''); // Limpiar la colección seleccionada después de crear la nota
+            setSelectedCollection('');
         } catch (error) {
             console.error('Error creating note:', error.response.data);
         }
@@ -75,7 +72,7 @@ function NoteForm({ onNoteAdded }) {
         <form className="note-form" onSubmit={handleSubmit}>
             <input
                 type="text"
-                placeholder="Tittle"
+                placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="form-input"
@@ -110,7 +107,6 @@ function NoteForm({ onNoteAdded }) {
                 />
             ))}
             <button type="button" onClick={handleAddImage} className="form-button">Add Image</button>
-            {/* Combo box para seleccionar la colección */}
             <select value={selectedCollection} onChange={handleCollectionChange} className="form-input">
                 <option value="">Select Collection</option>
                 {collections.map(collection => (
