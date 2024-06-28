@@ -49,8 +49,13 @@ const Collection = () => {
     return (
         <div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div className="note-management-links">
                 <button onClick={() => navigate('/notes')} className="user-management-button">
+=======
+            <div className="note-management-links">
+                <button onClick={() => navigate('/notes')} className="button collection-management-button">
+>>>>>>> Stashed changes
 =======
             <div className="note-management-links">
                 <button onClick={() => navigate('/notes')} className="button collection-management-button">
