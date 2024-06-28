@@ -79,13 +79,13 @@ const Friends = () => {
     };
 
     return (
-        <div>
+        <div className="friends-container">
             <div className="note-management-links">
-                <button onClick={() => navigate('/notes')} className="user-management-button">
+                <button onClick={() => navigate('/notes')} className="button back-button">
                     <FontAwesomeIcon icon={faArrowLeft} /> Back to Notes
                 </button>
             </div>
-            <div className="friends-container">
+            <div className="friends-content">
                 <div className="visibility-toggles">
                     <label>
                         <input
@@ -120,8 +120,8 @@ const Friends = () => {
                             {friendRequests.map(request => (
                                 <li key={request._id} className="friend-request-item">
                                     <span>{request.sender.username}</span>
-                                    <button onClick={() => handleAcceptRequest(request._id)}>Accept</button>
-                                    <button onClick={() => handleRejectRequest(request._id)}>Reject</button>
+                                    <button onClick={() => handleAcceptRequest(request._id)} className="button accept-button">Accept</button>
+                                    <button onClick={() => handleRejectRequest(request._id)} className="button reject-button">Reject</button>
                                 </li>
                             ))}
                         </ul>
@@ -155,7 +155,7 @@ const Friends = () => {
                                     <option key={user._id} value={user._id}>{user.username}</option>
                                 ))}
                             </select>
-                            <button onClick={handleSendRequest} className="send-request-button">Send Friend Request</button>
+                            <button onClick={handleSendRequest} className="button send-request-button">Send Friend Request</button>
                         </div>
                     </>
                 )}

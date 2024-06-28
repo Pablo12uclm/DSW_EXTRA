@@ -48,8 +48,13 @@ const Collection = () => {
 
     return (
         <div>
+<<<<<<< Updated upstream
         <div className="note-management-links">
                 <button onClick={() => navigate('/notes')} className="user-management-button">
+=======
+            <div className="note-management-links">
+                <button onClick={() => navigate('/notes')} className="button collection-management-button">
+>>>>>>> Stashed changes
                     <FontAwesomeIcon icon={faArrowLeft} /> Back to Notes
                 </button>
         </div>
@@ -64,6 +69,7 @@ const Collection = () => {
                 />
                 <button onClick={handleCreateCollection} className="collection-button">Add Collection</button>
             </div>
+<<<<<<< Updated upstream
             <ul className="collection-list">
                 {collections.map(collection => (
                     <li key={collection._id} className="collection-item">
@@ -73,6 +79,90 @@ const Collection = () => {
                 ))}
             </ul>
         </div>
+=======
+            <div className="collection-container">
+                <h1>Create Collection</h1>
+                <div className="collection-form">
+                    <input
+                        value={newCollectionName}
+                        onChange={(e) => setNewCollectionName(e.target.value)}
+                        placeholder="Enter new collection name"
+                        className="collection-input"
+                    />
+                    <button onClick={handleCreateCollection} className="button collection-button">Add Collection</button>
+                </div>
+                <h2>My Collections</h2>
+                <ul className="collection-list">
+                    {collections.map(collection => (
+                        <li key={collection._id} className="collection-item">
+                            <div className="collection-header">
+                                <span>{collection.name}</span>
+                                <button onClick={() => handleToggleExpand(collection._id)} className="button expand-button">
+                                    {expandedCollection === collection._id ? <FontAwesomeIcon icon={faChevronUp} /> : <FontAwesomeIcon icon={faChevronDown} />}
+                                </button>
+                                <button onClick={() => handleDeleteCollection(collection._id)} className="button collection-delete-button">Delete</button>
+                            </div>
+                            {expandedCollection === collection._id && (
+                                <div className="notes-list">
+                                    {notesByCollection[collection._id] ? (
+                                        notesByCollection[collection._id].map(note => (
+                                            <Note
+                                                key={note._id}
+                                                note={note}
+                                                deleteNote={() => deleteNote(note._id)}
+                                                updateNote={updateNote}
+                                                canShare={true} // Permite compartir en "My Collections"
+                                            />
+                                        ))
+                                    ) : (
+                                        <p>Loading notes...</p>
+                                    )}
+                                </div>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+                {isAdmin && (
+                    <>
+                        <h2>Users Collections</h2>
+                        {Object.keys(userCollections).map(userId => (
+                            <div key={userId}>
+                                <h3 className="user-name">{userCollections[userId].username}</h3> {/* Clase CSS aplicada */}
+                                <ul className="collection-list">
+                                    {userCollections[userId].collections.map(collection => (
+                                        <li key={collection._id} className="collection-item">
+                                            <div className="collection-header">
+                                                <span>{collection.name}</span>
+                                                <button onClick={() => handleToggleExpand(collection._id)} className="button expand-button">
+                                                    {expandedCollection === collection._id ? <FontAwesomeIcon icon={faChevronUp} /> : <FontAwesomeIcon icon={faChevronDown} />}
+                                                </button>
+                                            </div>
+                                            {expandedCollection === collection._id && (
+                                                <div className="notes-list">
+                                                    {notesByCollection[collection._id] ? (
+                                                        notesByCollection[collection._id].map(note => (
+                                                            <Note
+                                                                key={note._id}
+                                                                note={note}
+                                                                deleteNote={() => deleteNote(note._id)}
+                                                                updateNote={updateNote}
+                                                                canShare={false} // No permite compartir en "Users Collections"
+                                                            />
+                                                        ))
+                                                    ) : (
+                                                        <p>Loading notes...</p>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </>
+                )}
+            </div>
+>>>>>>> Stashed changes
         </div>
     );
 };

@@ -101,12 +101,14 @@ function UserManagement() {
 
     return (
         <div className="user-management-container">
-            <button onClick={() => navigate('/notes')} className="user-management-button">
-                <FontAwesomeIcon icon={faArrowLeft} /> Back to Notes
-            </button>
-            <button onClick={handleLogout} className="logout-button user-management-button">
-                Logout
-            </button>
+            <div className="note-management-links">
+                <button onClick={() => navigate('/notes')} className="user-management-button">
+                    <FontAwesomeIcon icon={faArrowLeft} /> Back to Notes
+                </button>
+                <button onClick={handleLogout} className="logout-button user-management-button">
+                    Logout
+                </button>
+            </div>
             <h1 className="user-management-header">Your User</h1>
             <div className="user-section">
                 {isEditingCurrentUser ? (
